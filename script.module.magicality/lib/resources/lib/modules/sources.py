@@ -50,7 +50,7 @@ class sources:
 
         try:
             url = None
-            
+
             items = self.getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered)
 
             select = control.setting('hosts.mode') if select == None else select
@@ -1170,7 +1170,11 @@ class sources:
 
         self.metaProperty = 'plugin.video.magicality.container.meta'
 
-        from resources.lib.sources import sources
+        #from resources.lib.sources import sources
+        if control.setting("hosters.enabled") == True:
+            from lambdascrapers.sources_ALL import sources
+        else:
+            from resources.lib.sources import sources
 
         self.sourceDict = sources()
 
