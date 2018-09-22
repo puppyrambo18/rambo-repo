@@ -49,7 +49,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.magicality" version="6.1.6" name="Magicality" provider-name="Wilson Magic">
+<addon id="plugin.video.magicality" version="6.1.7" name="Magicality" provider-name="Wilson Magic">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.magicality" />
@@ -319,7 +319,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="script.module.magicality" name="Magicality Module" version="4.0.0.2" provider-name="Wilson Magic">
+<addon id="script.module.magicality" name="Magicality Module" version="4.0.0.3" provider-name="Wilson Magic">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.beautifulsoup4"/>
