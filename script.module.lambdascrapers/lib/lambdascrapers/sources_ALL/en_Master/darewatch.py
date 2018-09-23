@@ -18,7 +18,6 @@
 
 # Addon Name: LambdaScrapers Module
 # Addon id: script.module.lambdascrapers
-# Provider: doko-desuka
 
 '''
     DareWatch scraper for Exodus forks.
