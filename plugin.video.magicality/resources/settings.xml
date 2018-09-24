@@ -49,7 +49,6 @@
         <setting id="crefresh" type="bool" label="32373" default="false" />
     </category>
     <category label="32345">
-        <setting id="hosters.enabled" type="bool" label="Lambda Scrapers Enabled? (This will override any settings already set for providers.)" default="false"/>
         <setting label="English" type="lsep" />f
         <setting type="sep" />
         <setting id="provider.2ddl" type="bool" label="2DDL" default="true" />
@@ -189,6 +188,11 @@
         <setting id="provider.tainiesonline" type="bool" label="TAINIESONLINE" default="true" />
         <setting id="provider.xrysoi" type="bool" label="XRYSOI" default="true" />
         <setting id="provider.liomenoi" type="bool" label="LIOMENOI" default="true" />
+    </category>
+    <category label="Other Hosters">
+        <setting label="Lambda Scrapers" type="lsep" />
+        <setting id="ls.enabled" type="bool" label="Lambda Scrapers Enabled? (This will override any settings already set for providers in the previous section.)" default="false"/>
+        <setting id="ls.choice" label="Which one?" type="select" values="All|Incursion|Placenta|Yoda" default="All" subsetting="true"/>
     </category>
     <category label="32346">
         <setting type="lsep" label="FANART.TV" />

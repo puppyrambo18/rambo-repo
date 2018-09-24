@@ -1171,8 +1171,15 @@ class sources:
         self.metaProperty = 'plugin.video.magicality.container.meta'
 
         #from resources.lib.sources import sources
-        if control.setting("hosters.enabled") == True:
-            from lambdascrapers.sources_ALL import sources
+        if control.setting("ls.enabled") == True:
+            if control.setting("ls.choice") == 'All':
+                from lambdascrapers.sources_ALL import sources
+            if control.setting("ls.choice") == 'Incursion':
+                from lambdascrapers.sources_incursion import sources
+            if control.setting("ls.choice") == 'Placenta':
+                from lambdascrapers.sources_placenta import sources
+            if control.setting("ls.choice") == 'Yoda':
+                from lambdascrapers.sources_yoda import sources
         else:
             from resources.lib.sources import sources
 
