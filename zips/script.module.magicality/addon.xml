@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.magicality" name="Magicality Module" version="4.0.1" provider-name="Wilson Magic">
+<addon id="script.module.magicality" name="Magicality Module" version="4.0.5" provider-name="Wilson Magic">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.beautifulsoup4"/>

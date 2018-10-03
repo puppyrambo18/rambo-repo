@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Magicality Add-on
+    resistance Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -362,14 +362,6 @@ elif action == 'clearSources':
     from resources.lib.modules import sources
     sources.sources().clearSources()
 
-elif action == 'disableAll':
-    from resources.lib.modules import sources
-    sources.sources().disableAll()
-
-elif action == 'enableAll':
-    from resources.lib.modules import sources
-    sources.sources().enableAll()
-
 elif action == 'random':
     rtype = params.get('rtype')
     if rtype == 'movie':
@@ -443,9 +435,5 @@ elif action == 'updateLibrary':
 elif action == 'service':
     from resources.lib.modules import libtools
     libtools.libepisodes().service()
-
-elif action == 'lambdaScraperChoice':
-    from resources.lib.modules import control
-    control.lambdaScraperChoice()
     
 

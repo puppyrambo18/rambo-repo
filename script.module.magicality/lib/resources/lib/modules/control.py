@@ -298,19 +298,6 @@ def openSettings(query=None, id=addonInfo('id')):
     except:
         return
 
-def lambdaScraperChoice():
-    idle()
-    module_choice = 'Default'
-    if xbmc.getCondVisibility('System.HasAddon(%s)' % 'script.module.lambdascrapers'):
-        items = ['Default', 'All', 'Yoda', 'Placenta', 'Incursion']
-        select = selectDialog([i for i in items])
-        if select == -1: return
-        module_choice = items[select]
-    else:
-        dialog.ok(addonInfo('name'), 'You must install lambdascrapers module to change this setting.')
-    setSetting('module.provider', module_choice)
-    openSettings('3.2')
-
 
 def getCurrentViewId():
     win = xbmcgui.Window(xbmcgui.getCurrentWindowId())

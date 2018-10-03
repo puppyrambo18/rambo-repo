@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    Magicality Add-on
+    resistance Add-on
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,15 +31,18 @@ def syncTraktLibrary():
 try:
     ModuleVersion = control.addon('script.module.magicality').getAddonInfo('version')
     AddonVersion = control.addon('plugin.video.magicality').getAddonInfo('version')
+    #RepoVersion = control.addon('repository.colossus').getAddonInfo('version')
 
     log_utils.log('######################### Magicality ############################', log_utils.LOGNOTICE)
-    log_utils.log('################ Magicality PLUGIN VERSION: %s ##############' % str(AddonVersion), log_utils.LOGNOTICE)
-    log_utils.log('################ Magicality SCRIPT VERSION: %s ##############' % str(ModuleVersion), log_utils.LOGNOTICE)
-    log_utils.log('#################################################################', log_utils.LOGNOTICE)
+    log_utils.log('####### CURRENT Magicality VERSIONS REPORT ######################', log_utils.LOGNOTICE)
+    log_utils.log('### Magicality PLUGIN VERSION: %s ###' % str(AddonVersion), log_utils.LOGNOTICE)
+    log_utils.log('### Magicality SCRIPT VERSION: %s ###' % str(ModuleVersion), log_utils.LOGNOTICE)
+    #log_utils.log('### resistance REPOSITORY VERSION: %s ###' % str(RepoVersion), log_utils.LOGNOTICE)
+    log_utils.log('###############################################################', log_utils.LOGNOTICE)
 except:
     log_utils.log('######################### Magicality ############################', log_utils.LOGNOTICE)
     log_utils.log('####### CURRENT Magicality VERSIONS REPORT ######################', log_utils.LOGNOTICE)
-    log_utils.log('### ERROR GETTING Magicality VERSIONS - NO HELP WILL BE GIVEN AS THIS IS NOT AN OFFICIAL Magicality INSTALL. ###', log_utils.LOGNOTICE)
+    log_utils.log('### ERROR GETTING Magicality VERSIONS - NO HELP WILL BE GIVEN AS THIS IS NOT AN OFFICIAL resistance INSTALL. ###', log_utils.LOGNOTICE)
     log_utils.log('###############################################################', log_utils.LOGNOTICE)
 
 if control.setting('autoTraktOnStart') == 'true':

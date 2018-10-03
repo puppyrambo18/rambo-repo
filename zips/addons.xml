@@ -68,7 +68,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.magicality" version="6.2.0" name="Magicality" provider-name="Wilson Magic">
+<addon id="plugin.video.magicality" version="6.2.1" name="Magicality" provider-name="Wilson Magic">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.magicality" />
@@ -77,9 +77,9 @@
 		<import addon="script.module.resolveurl" />
 		<import addon="script.module.requests" />
 		<import addon="script.module.metahandler" version="1.0.0" />
-        <import addon="script.module.lambdascrapers" optional="true"/>
+        <import addon="script.module.lambdascrapers"/>
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="magicality.py">
+	<extension point="xbmc.python.pluginsource" library="resistance.py">
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.service" library="service.py" start="startup" />
@@ -361,7 +361,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="script.module.magicality" name="Magicality Module" version="4.0.1" provider-name="Wilson Magic">
+<addon id="script.module.magicality" name="Magicality Module" version="4.0.5" provider-name="Wilson Magic">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.beautifulsoup4"/>

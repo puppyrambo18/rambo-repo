@@ -296,7 +296,7 @@ class sources:
 
     def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality='HD', timeout=30):
         progressDialog = control.progressDialog if control.setting('progress.dialog') == '0' else control.progressDialogBG
-        progressDialog.create("{0} ({1} Module)".format(control.addonInfo('name'), self.scraper_module), '')
+        progressDialog.create(control.addonInfo('name'), '')
         progressDialog.update(0)
 
         self.prepareSources()
@@ -319,7 +319,7 @@ class sources:
         sourceDict = [(i[0], i[1], i[1].language) for i in sourceDict]
         sourceDict = [(i[0], i[1]) for i in sourceDict if any(x in i[2] for x in language)]
 
-        try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0].split('_')[0])) for i in sourceDict]
+        try: sourceDict = [(i[0], i[1], control.setting('provider.' + i[0])) for i in sourceDict]
         except: sourceDict = [(i[0], i[1], 'true') for i in sourceDict]
         sourceDict = [(i[0], i[1]) for i in sourceDict if not i[2] == 'false']
 
@@ -1170,15 +1170,18 @@ class sources:
 
         self.metaProperty = 'plugin.video.magicality.container.meta'
 
-        self.scraper_module = control.setting('module.provider')
-        
-        try:
-            if xbmc.getCondVisibility('System.HasAddon(%s)' % 'script.module.lambdascrapers') and not self.scraper_module == 'Default':
-                exec('from lambdascrapers.%s import sources' % ('sources_ALL' if self.scraper_module == 'All' else 'sources_incursion' if self.scraper_module == 'Incursion' else 'sources_placenta' if self.scraper_module == 'Placenta' else 'sources_yoda' if self.scraper_module == 'Yoda' else ''))
-            else:
-                from resources.lib.sources import sources
-                control.setSetting('module.provider', 'Default')
-        except: return
+        #from resources.lib.sources import sources
+        if control.setting("ls.enabled") == True:
+            if control.setting("ls.choice") == 'All':
+                from lambdascrapers.sources_ALL import sources
+            if control.setting("ls.choice") == 'Incursion':
+                from lambdascrapers.sources_incursion import sources
+            if control.setting("ls.choice") == 'Placenta':
+                from lambdascrapers.sources_placenta import sources
+            if control.setting("ls.choice") == 'Yoda':
+                from lambdascrapers.sources_yoda import sources
+        else:
+            from resources.lib.sources import sources
 
         self.sourceDict = sources()
 
@@ -1197,24 +1200,6 @@ class sources:
         self.hosthqDict = ['gvideo', 'google.com', 'openload.io', 'openload.co', 'oload.tv', 'thevideo.me', 'rapidvideo.com', 'raptu.com', 'filez.tv', 'uptobox.com', 'uptobox.com', 'uptostream.com', 'xvidstage.com', 'streamango.com']
 
         self.hostblockDict = []
-
-    def enableAll(self):
-        try:
-            sourceDict = self.sourceDict
-            for i in sourceDict:
-                source_setting = 'provider.' + i[0].split('_')[0]
-                control.setSetting(source_setting, 'true')
-        except: pass
-        control.openSettings('3.3')
-
-    def disableAll(self):
-        try:
-            sourceDict = self.sourceDict
-            for i in sourceDict:
-                source_setting = 'provider.' + i[0].split('_')[0]
-                control.setSetting(source_setting, 'false')
-        except: pass
-        control.openSettings('3.4')
 
     def getPremColor(self, n):
         if n == '0': n = 'blue'
