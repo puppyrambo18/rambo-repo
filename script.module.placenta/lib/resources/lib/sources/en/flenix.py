@@ -24,7 +24,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['flenix.org']
-        self.base_link = 'http://flenix.org'
+        self.base_link = 'http://www2.flenix.org'
         self.search_link = '/watch/%s-%s-online-flenix.html'
         
     def movie(self, imdb, title, localtitle, aliases, year):

@@ -25,9 +25,9 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['123-netflix.com']
-        self.base_link = 'http://123-netflix.com/'
-        self.search_link = '?s=%s'
+        self.domains = ['123netflix.biz']
+        self.base_link = 'http://123netflix.biz/'
+        self.search_link = 'movies-list.html?name=%s'
 
 
     def movie(self, imdb, title, localtitle, aliases, year):

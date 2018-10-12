@@ -26,8 +26,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['filmxy.cc,filmxy.me']
-        self.base_link = 'https://www.filmxy.me/'
+        self.domains = ['filmxy.cc,filmxy.me', 'filmxy.one']
+        self.base_link = 'https://www.filmxy.one/'
         self.search_link = '/%s/wp-json/wp/v2/posts?search=%s'
 
 

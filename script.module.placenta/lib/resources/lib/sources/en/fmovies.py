@@ -24,9 +24,9 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['fmovies.se', 'fmovies.to', 'bmovies.is']
-        self.base_link = 'https://www7.fmovies.se/'
-        self.search_path = '/search?keyword=%s'
+        self.domains = ['fmovies.ac', 'fmovies.to', 'bmovies.is']
+        self.base_link = 'https://www3.fmovies.ac/'
+        self.search_path = '/search/%s'
         self.film_path = '/film/%s'
         self.js_path = '/assets/min/public/all.js?5a0da8a9'
         self.info_path = '/ajax/episode/info?ts=%s&_=%s&id=%s&server=%s&update=0'

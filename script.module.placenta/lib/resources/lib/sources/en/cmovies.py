@@ -63,10 +63,10 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['cmovieshd.io']
-        self.base_link = 'https://www3.cmovies.io/'
-        self.tv_link = 'https://www3.cmovies.io/tv-series/'
-        self.movie_link = 'https://www3.cmovies.io/movie/'
-        self.search_link = 'https://www3.cmovies.io/search/?q='
+        self.base_link = 'https://www5.cmovies.io/'
+        self.tv_link = 'https://www5.cmovies.io/tv-series/'
+        self.movie_link = 'https://www5.cmovies.io/movie/'
+        self.search_link = 'https://www5.cmovies.io/search/?q='
 
     def movie(self, imdb, title, localtitle, aliases, year):
         url = []

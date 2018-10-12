@@ -2,7 +2,7 @@
 #######################################################################
  # ----------------------------------------------------------------------------
  # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
+ # @tantrumdev wrote this file.  As long as you retain this notice you
  # can do whatever you want with this stuff. If we meet some day, and you think
  # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
  # ----------------------------------------------------------------------------
@@ -10,7 +10,7 @@
 
 # Addon Name: Placenta
 # Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
+# Addon Provider: MuadDib
 
 import re,traceback,urllib,urlparse
 
@@ -24,9 +24,9 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['2ddl.io']
-        self.base_link = 'http://2ddl.io/'
-        self.search_link = '/search/%s/feed/rss2/'
+        self.domains = ['2ddl.ws']
+        self.base_link = 'http://2ddl.ws/'
+        self.search_link = '/?s=%s'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
@@ -66,10 +66,7 @@ class source:
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
-
             if url == None: return sources
-
-            if debrid.status() is False: raise Exception()
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -78,76 +75,34 @@ class source:
 
             hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
 
-            query = '%s S%02dE%02d' % (
-            data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (
-            data['title'], data['year'])
-            query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
+            query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
+            query = re.sub('(\\\|/| -|:|;|\*|\?|"|<|>|\|)', ' ', query).replace('\'', '')
 
             url = self.search_link % urllib.quote_plus(query)
             url = urlparse.urljoin(self.base_link, url)
-
+            log_utils.log('2DDL - sources - url: ' + str(url))
             html = client.request(url)
-            posts = client.parseDOM(html, 'item')
+            url_list = re.compile('<h2><a href="([^"]+)"',re.DOTALL).findall(html)
 
             hostDict = hostprDict + hostDict
 
-            items = []
-
-            for post in posts:
-                try:
-                    t = client.parseDOM(post, 'title')[0]
-                    u = client.parseDOM(post, 'a', ret='href')
-                    s = re.search('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', post)
-                    s = s.groups()[0] if s else '0'
-                    items += [(t, i, s) for i in u]
-                except:
-                    pass
-
-            for item in items:
-                try:
-
-                    url = item[1]
-                    if any(x in url for x in ['.rar', '.zip', '.iso']): raise Exception()
-                    url = client.replaceHTMLCodes(url)
-                    url = url.encode('utf-8')
-
-                    valid, host = source_utils.is_host_valid(url, hostDict)
-                    if not valid: raise Exception()
-                    host = client.replaceHTMLCodes(host)
-                    host = host.encode('utf-8')
-
-                    name = item[0]
-                    name = client.replaceHTMLCodes(name)
-
-                    t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name, flags=re.I)
-
-                    if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
-
-                    y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
-
-                    if not y == hdlr: raise Exception()
-
-                    quality, info = source_utils.get_release_quality(name, url)
-
-                    try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', item[2])[-1]
-                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
-                        size = float(re.sub('[^0-9|/.|/,]', '', size)) / div
-                        size = '%.2f GB' % size
-                        info.append(size)
-                    except:
-                        pass
-
-                    info = ' | '.join(info)
-
-                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info,
-                                    'direct': False, 'debridonly': True})
-                except:
-                    pass
-
-            check = [i for i in sources if not i['quality'] == 'CAM']
-            if check: sources = check
-
+            for url in url_list:
+                if cleantitle.get(title) in cleantitle.get(url):
+                    html = client.request(url)
+                    links = re.compile('href="([^"]+)" rel="nofollow"',re.DOTALL).findall(html)
+                    for vid_url in links:
+                        if 'ouo.io' in vid_url:
+                            continue
+                        if 'sh.st' in vid_url:
+                            continue
+                        if 'linx' in vid_url:
+                            continue
+                        if '.rar' not in vid_url:
+                            if '.srt' not in vid_url:
+                                quality,info = source_utils.get_release_quality(url, vid_url)
+                                host = vid_url.split('//')[1].replace('www.','')
+                                host = host.split('/')[0].lower()
+                                sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': vid_url, 'info': info, 'direct': False, 'debridonly': False})
             return sources
         except:
             failure = traceback.format_exc()

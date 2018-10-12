@@ -24,7 +24,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['hdpopcorns.com']
-        self.base_link = 'http://hdpopcorns.co/'
+        self.base_link = 'http://hdpopcorns.eu/'
         self.search_link = '/?s=%s'
 
     def movie(self, imdb, title, localtitle, aliases, year):

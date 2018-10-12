@@ -25,7 +25,7 @@ class source:
         self.language = ['en']
         self.domains = ['freeputlockers.org']
         self.base_link = 'http://freeputlockers.org'
-        self.search_link = '/watch/%s-%s-online-putlockers.html' 
+        self.search_link = '/watch/%s-%s.html' 
         
     def movie(self, imdb, title, localtitle, aliases, year):
         try:

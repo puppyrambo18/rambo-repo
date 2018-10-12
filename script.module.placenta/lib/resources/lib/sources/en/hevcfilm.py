@@ -8,9 +8,9 @@
  # ----------------------------------------------------------------------------
 #######################################################################
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
+# Addon Name: Bodie The Bulldog
+# Addon id: plugin.video.bodiethebulldog
+# Addon Provider: Grice Advice
 
 import re,urllib,urlparse
 

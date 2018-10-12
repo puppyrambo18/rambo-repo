@@ -24,7 +24,7 @@ class source:
         self.language = ['en']
         self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is', 'flixanity.me','istream.is','flixanity.online','flixanity.cc','123movies.it']
         self.base_link = 'http://123movieser.com'
-        self.search_link = '/watch/%s-%s-online-free-123movies.html'
+        self.search_link = '/search/%s-%s.html'
         
     def movie(self, imdb, title, localtitle, aliases, year):
         try:

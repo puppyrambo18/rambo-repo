@@ -22,7 +22,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['123fox.net']
-        self.base_link = 'http://123fox.net/'
+        self.base_link = 'http://www1.123fox.net/'
         self.search_link = '/search-movies/%s.html'
 
 

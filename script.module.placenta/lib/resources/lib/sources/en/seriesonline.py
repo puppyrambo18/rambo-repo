@@ -8,9 +8,9 @@
  # ----------------------------------------------------------------------------
 #######################################################################
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
+# Addon Name: Bodie The Bulldog
+# Addon id: plugin.video.bodiethebulldog
+# Addon Provider: Grice Advice
 
 import re,urllib,urlparse
 
@@ -24,7 +24,7 @@ class source:
         self.priority = 1
         self.language = ['en']
         self.domains = ['seriesonline8.co']
-        self.base_link = 'https://www1.seriesonline8.co/'
+        self.base_link = 'https://www2.seriesonline8.co/'
         self.search_link = '/movie/search/%s'
 
     def matchAlias(self, title, aliases):
