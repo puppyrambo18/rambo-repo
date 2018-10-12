@@ -38,37 +38,6 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="repository.jsergio" name="jsergio repo" version="1.0.3" provider-name="jsergio">
-	<extension point="xbmc.addon.repository" name="jsergio repo">
-        <dir>
-            <info compressed="false">https://raw.github.com/ddurdle/repository.ddurdle/master/addons.xml</info>
-            <checksum>https://raw.github.com/ddurdle/repository.ddurdle/master/addons.xml.md5</checksum>
-            <datadir zip="true">http://dmdsoftware.net/repository.ddurdle/</datadir>
-        </dir>
-        <info compressed="false">https://raw.githubusercontent.com/jsergio123/zips/master/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/jsergio123/zips/master/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/jsergio123/zips/master/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Repo for jsergio Add-ons</summary>
-		<description>Repo for jsergio Add-ons</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.rambo" name="Rambo Repo" version="1.0.1" provider-name="Puppy Rambo">
-	<extension point="xbmc.addon.repository" name="Rambo's Repo">
-		<info compressed="false">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/repository.rambo/addon.xml</info>
-		<checksum>https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips/repository.rambo/addon.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Rambo's Repo</summary>
-		<description>Rambo's Repo - Home of Rambo's Favourite Addons</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
     <addon id="repository.universalscrapers" name="universalscrapers-repository" version="1.0.0" provider-name="universalscrapers">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
@@ -86,72 +55,19 @@ This is a Non-profit resource, organized solely for educational purposes which i
         </extension>
     </addon>
 
-<addon id="script.module.beautifulsoup"
-       name="BeautifulSoup"
-       version="3.2.1"
-       provider-name="Leonard Richardson (leonardr@segfault.org)">
-  <requires>
-    <import addon="xbmc.python"
-    		version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.module"
-             library="lib" />
-  <extension point="xbmc.addon.metadata">
-    <summary>HTML/XML parser for quick-turnaround applications like screen-scraping</summary>
-    <description>Beautiful Soup parses arbitrarily invalid SGML and provides a variety of methods and Pythonic idioms for iterating and searching the parse tree.</description>
-    <license>BSD</license>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="script.module.beautifulsoup4"
-       name="BeautifulSoup4"
-       version="4.5.3"
-       provider-name="Leonard Richardson (leonardr@segfault.org)">
-  <requires>
-    <import addon="xbmc.python"
-             version="2.25.0"/>
-  </requires>
-  <extension point="xbmc.python.module"
-             library="lib" />
-  <extension point="xbmc.addon.metadata">
-    <summary>HTML/XML parser for quick-turnaround applications like screen-scraping</summary>
-    <description>Beautiful Soup parses arbitrarily invalid SGML and provides a variety of methods and Pythonic idioms for iterating and searching the parse tree.</description>
-    <license>BSD</license>
-    <platform>all</platform>
-    <website>http://www.crummy.com/software/BeautifulSoup/</website>
-  </extension>
-</addon>
-
-<addon id="script.module.lambdascrapers" name="Lambdascrapers Module" version="1.2.0" provider-name="IAC">
+<addon id="script.module.schism.common" name="Common Libraries" version="2018.03.10" provider-name="common">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.beautifulsoup4"/>
+		<import addon="script.module.six" />
+		<import addon="script.module.metahandler" />
+		<import addon="script.module.beautifulsoup" />
 	</requires>
 	<extension point="xbmc.python.module" library="lib" />
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
-        <reuselanguageinvoker>false</reuselanguageinvoker>
-		<summary lang="en">Lambdascrapers Module</summary>
-		<description>Scrape common video host for URL's to be playable in XBMC/Kodi, simplifying addon development of video plugins requiring multi video hosts.</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-        <license>Beerware rev. 42</license>
-	</extension>
-</addon>
-
-<addon id="script.module.placenta" name="Placenta Module" version="1.7.8" provider-name="Team Afterbirth">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.beautifulsoup4"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<platform>all</platform>
-        <reuselanguageinvoker>false</reuselanguageinvoker>
-		<summary lang="en">Placenta</summary>
-		<description>Covenant Fork from Echo/Colossus era with Team Afterbirth's updates and new code.</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-        <license>Beerware rev. 42</license>
+		<summary lang="en">Collection of modules used by common</summary>
+		<description lang="en">Collection of modules used by common</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 	</extension>
 </addon>
 
@@ -178,6 +94,22 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
+<addon id="script.module.lambdascrapers" name="Lambdascrapers Module" version="1.2.0" provider-name="IAC">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.beautifulsoup4"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+        <reuselanguageinvoker>false</reuselanguageinvoker>
+		<summary lang="en">Lambdascrapers Module</summary>
+		<description>Scrape common video host for URL's to be playable in XBMC/Kodi, simplifying addon development of video plugins requiring multi video hosts.</description>
+        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+        <license>Beerware rev. 42</license>
+	</extension>
+</addon>
+
 <addon id="script.module.resolveurl" name="ResolveURL" version="5.0.15" provider-name="jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -195,22 +127,6 @@ This is a Non-profit resource, organized solely for educational purposes which i
 		<summary lang="hr">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju.</summary>
 		<description lang="en">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
 		<description lang="hr">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju, pojednostavnjuje razvoj priključaka za video dodatke koji zahtjevaju višestruke video izvore.</description>
-	</extension>
-</addon>
-
-<addon id="script.module.schism.common" name="Common Libraries" version="2018.03.10" provider-name="common">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.six" />
-		<import addon="script.module.metahandler" />
-		<import addon="script.module.beautifulsoup" />
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<platform>all</platform>
-		<summary lang="en">Collection of modules used by common</summary>
-		<description lang="en">Collection of modules used by common</description>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 	</extension>
 </addon>
 
@@ -240,18 +156,52 @@ This is a Non-profit resource, organized solely for educational purposes which i
         </extension>
 </addon>
 
-<addon id="script.placenta.artwork" version="1.0.8" name="Placenta Artwork" provider-name="Team Afterbirth">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
+<addon id="repository.jsergio" name="jsergio repo" version="1.0.3" provider-name="jsergio">
+	<extension point="xbmc.addon.repository" name="jsergio repo">
+        <dir>
+            <info compressed="false">https://raw.github.com/ddurdle/repository.ddurdle/master/addons.xml</info>
+            <checksum>https://raw.github.com/ddurdle/repository.ddurdle/master/addons.xml.md5</checksum>
+            <datadir zip="true">http://dmdsoftware.net/repository.ddurdle/</datadir>
+        </dir>
+        <info compressed="false">https://raw.githubusercontent.com/jsergio123/zips/master/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/jsergio123/zips/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/jsergio123/zips/master/</datadir>
+	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Themes for the Placenta Addon</summary>
-		<description>Artwork Module for the Placenta Addon</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
-The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
-This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
-        <license>Beerware rev. 42</license>
+		<summary>Repo for jsergio Add-ons</summary>
+		<description>Repo for jsergio Add-ons</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.module.beautifulsoup"
+       name="BeautifulSoup"
+       version="3.2.1"
+       provider-name="Leonard Richardson (leonardr@segfault.org)">
+  <requires>
+    <import addon="xbmc.python"
+    		version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module"
+             library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <summary>HTML/XML parser for quick-turnaround applications like screen-scraping</summary>
+    <description>Beautiful Soup parses arbitrarily invalid SGML and provides a variety of methods and Pythonic idioms for iterating and searching the parse tree.</description>
+    <license>BSD</license>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="repository.rambo" name="Rambo's Repo" version="0.0.1" provider-name="Puppy Rambo">
+	<extension point="xbmc.addon.repository" name="Rambo's Repo">
+		<info compressed="false">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/repository.rambo/addon.xml</info>
+		<checksum>https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips/repository.rambo/addon.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Rambo's Repo</summary>
+		<description>Rambo's Repo - Home of Rambo's Favourite Addons</description>
+		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -264,6 +214,57 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	<extension point="xbmc.addon.metadata">
 		<summary>Metadata for the Placenta Addon</summary>
 		<description>Metadata for Placenta are maintained separately to make distribution of the the addon itself easier/faster.</description>
+        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
+The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
+This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+        <license>Beerware rev. 42</license>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.module.placenta" name="Placenta Module" version="1.7.8" provider-name="Team Afterbirth">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.beautifulsoup4"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+        <reuselanguageinvoker>false</reuselanguageinvoker>
+		<summary lang="en">Placenta</summary>
+		<description>Covenant Fork from Echo/Colossus era with Team Afterbirth's updates and new code.</description>
+        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
+        <license>Beerware rev. 42</license>
+	</extension>
+</addon>
+
+<addon id="script.module.beautifulsoup4"
+       name="BeautifulSoup4"
+       version="4.5.3"
+       provider-name="Leonard Richardson (leonardr@segfault.org)">
+  <requires>
+    <import addon="xbmc.python"
+             version="2.25.0"/>
+  </requires>
+  <extension point="xbmc.python.module"
+             library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <summary>HTML/XML parser for quick-turnaround applications like screen-scraping</summary>
+    <description>Beautiful Soup parses arbitrarily invalid SGML and provides a variety of methods and Pythonic idioms for iterating and searching the parse tree.</description>
+    <license>BSD</license>
+    <platform>all</platform>
+    <website>http://www.crummy.com/software/BeautifulSoup/</website>
+  </extension>
+</addon>
+
+<addon id="script.placenta.artwork" version="1.0.8" name="Placenta Artwork" provider-name="Team Afterbirth">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the Placenta Addon</summary>
+		<description>Artwork Module for the Placenta Addon</description>
         <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
 The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
 This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
