@@ -192,9 +192,9 @@ This is a Non-profit resource, organized solely for educational purposes which i
   </extension>
 </addon>
 
-<addon id="repository.rambo" name="Rambo's Repo" version="1.2.3" provider-name="Puppy Rambo">
+<addon id="repository.rambo" name="Rambo's Repo" version="1.2.5" provider-name="Puppy Rambo">
     <extension point="xbmc.addon.repository" name="Rambo's Repo">
-        <info compressed="true">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/repository.rambo/addon.xml</info>
+        <info compressed="false">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips/addons.xml</info>
         <checksum>https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips/addons.xml.md5</checksum>
         <datadir zip="true">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips/</datadir>
     </extension>
