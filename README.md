@@ -1,2 +1,2 @@
-# repository.magicality
-Magicality Repository. Masterani Redux and Lambda forks.
+# rambo-repo
+Rambo's Repository. Forks of the apps we loved.
