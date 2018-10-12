@@ -1,179 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.video.9anime" name="9Anime" provider-name="DxCx" version="0.0.49">
-  <requires>
-    <import addon="xbmc.python" version="2.25.0" />
-    <import addon="script.module.requests" version="2.12.4" />
-    <import addon="script.common.plugin.cache" version="2.5.5" />
-    <import addon="script.module.urlresolver" version="5.0.20" />
-    <import addon="script.module.beautifulsoup4" version="4.5.3" />
-  </requires>
-  <extension library="default.py" point="xbmc.python.pluginsource">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">9Anime video plugin</summary>
-    <description lang="en">9anime is a great HD source for almost all animes out there</description>
-    <source>https://github.com/DxCx/plugin.video.9anime</source>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.dramatic" name="Dramatic" version="1.0.3" provider-name="Wilson Magic">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-		<import addon="script.module.requests"/>
-	    <import addon="script.module.beautifulsoup4"/>
-        <import addon="script.module.resolveurl" version="5.0.13"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Dramatic</summary>
-		<description lang="en">Because Asian drama is magical.</description>
-		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum>https://www.reddit.com/r/Addons4Kodi/</forum>
-		<website>https://www3.watchasian.co/</website>
-		<source>https://www3.watchasian.co/</source>
-		<disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-    	</assets>
-	</extension>
-</addon>
-
-<addon id="plugin.video.dubbedanime" version="1.0.5" name="Dubbed Anime" provider-name="Wilson Magic">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.module.beautifulsoup4"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en"></summary>
-		<description lang="en"></description>
-		<platform>all</platform>
-		<forum></forum>
-		<website></website>
-		<source></source>
-		<disclaimer lang="en"></disclaimer>
-		<news></news>
-	</extension>
-</addon>
-
-<addon id="plugin.video.magicality" version="6.2.1" name="Magicality" provider-name="Wilson Magic">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.module.magicality" />
-		<import addon="script.magicality.artwork" />
-		<import addon="script.magicality.metadata" />
-		<import addon="script.module.resolveurl" />
-		<import addon="script.module.requests" />
-		<import addon="script.module.metahandler" version="1.0.0" />
-        <import addon="script.module.lambdascrapers"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="resistance.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Magicality</summary>
-		<description lang="en">Magicality, it's Resistance but it works on Leia.</description>
-		<platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum></forum>
-		<website></website>
-		<source></source>
-		<disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-		</assets>
-		<news>
-		</news>
-	</extension>
-</addon>
-
-<addon id="plugin.video.masteraniredux" name="Masterani Redux" version="1.2.2" provider-name="Wilson Magic">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.metahandler" version="1.0.0" />
-		<import addon="script.module.resolveurl" version="5.0.13" />
-        <import addon="script.module.pyxbmct" />
-		<import addon="script.module.requests"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">Masterani Redux</summary>
-        <description lang="en">Play Anime from Masterani.me. Please note that this addon is not developed by the authors of Masterani.[CR][CR]This content does not support the original creators of the anime you can view, if you wish to support the original creators, then please use Crunchyroll, Funimation or other similar services.[CR][CR]アニメは凄いです!</description>
-        <disclaimer>Addon by Alleidun, SirTakoyaki and Wilson Magic. The author does not host or distribute any of the content displayed by this addon.</disclaimer>
-        <platform>all</platform>
-		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-		<forum>https://www.reddit.com/r/Addons4Kodi/</forum>
-		<website>https://www.masterani.me/</website>
-		<source>https://www.masterani.me/</source>
-		<disclaimer lang="en">The author of this addon do not host any of the content which is found and have no affiliation with any of the content providers. This addon simply searches websites for content. Use at your own risk!</disclaimer>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-    	</assets>
-    </extension>
-</addon>
-
-<addon id="plugin.video.neptune" version="1.4.9" name="Neptune Rising" provider-name="Mr. Blamo">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0" />
-		<import addon="script.neptune.artwork" />
-		<import addon="script.neptune.metadata" />
-                <import addon="script.module.resolveurl"/>
-                <import addon="script.module.metahandler"/>
-                <import addon="script.module.requests"/>
-                <import addon="script.module.beautifulsoup"/>
-                <import addon="script.module.schism.common"/>
-                <import addon="script.module.futures"/>
-        		<import addon="script.module.universalscrapers" version="1.0.0" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="neptune.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Neptune Rising</summary>
-		<description lang="en">Movie, TV Show, and Playlist Add-on</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
-The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
-This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.
-</disclaimer>
-		<platform>all</platform>
-		<license>Beerware rev. 42</license>
-		<platform>all</platform>
-        <reuselanguageinvoker>false</reuselanguageinvoker>
-		<forum></forum>
-		<website></website>
-		<source></source>
-		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-		</assets>
-		<news></news>
-	</extension>
-</addon>
-
 <addon id="plugin.video.placenta" version="1.4.6" name="Placenta" provider-name="Team Afterbirth">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
@@ -212,29 +38,6 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="repo.plugin.video.9anime" name="9Anime Kodi Repository" version="0.0.3" provider-name="DxCx">
-	<requires>
-		<import addon="xbmc.addon" version="12.0.0"/>
-	</requires>
-	<extension point="xbmc.addon.repository" name="9Anime Kodi Repository">
-			<info compressed="false">https://raw.githubusercontent.com/DxCx/repo.plugin.video.9anime/master/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/DxCx/repo.plugin.video.9anime/master/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/DxCx/repo.plugin.video.9anime/master</datadir>
-			<hashes>false</hashes>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Repository for 9Anime video plugin</summary>
-		<description lang="en">Download and install DxCx's addons repository.</description>
-		<source>https://github.com/DxCx/plugin.video.9anime</source>
-		<platform>all</platform>
-		<assets>
-		   <icon>resources/icon.png</icon>
-		   <fanart>resources/fanart.jpg</fanart>
-		</assets>
-		<news>[B]0.0.1[/B][CR]• Initial release</news>
-	</extension>
-</addon>
-
 <addon id="repository.jsergio" name="jsergio repo" version="1.0.3" provider-name="jsergio">
 	<extension point="xbmc.addon.repository" name="jsergio repo">
         <dir>
@@ -253,15 +56,15 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="repository.magicality" name="Magicality Repo" version="0.0.4" provider-name="Wilson Magic">
-	<extension point="xbmc.addon.repository" name="Magicality Repo">
-		<info compressed="false">https://raw.githubusercontent.com/Wilson-Magic/repository.magicality/master/zips/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/Wilson-Magic/repository.magicality/master/zips/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/Wilson-Magic/repository.magicality/master/zips</datadir>
+<addon id="repository.rambo" name="Rambo Repo" version="1.0.1" provider-name="Puppy Rambo">
+	<extension point="xbmc.addon.repository" name="Rambo Repo">
+		<info compressed="false">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/repository.rambo/addon.xml</info>
+		<checksum>https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips/repository.rambo/addon.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/puppyrambo18/rambo-repo/master/zips</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Magicality</summary>
-		<description>Magicality - Home of Masterani Redux</description>
+		<summary>Rambo's Repo</summary>
+		<description>Rambo's Repo - Home of Rambo's Favourite Addons</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
@@ -283,30 +86,6 @@ This is a Non-profit resource, organized solely for educational purposes which i
             <platform>all</platform>
         </extension>
     </addon>
-
-<addon id="script.magicality.artwork" version="1.0.5" name="Magicality Artwork" provider-name="Wilson Magic">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Themes for the Magicality Addon</summary>
-		<description></description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="script.magicality.metadata" version="2.0.0" name="Magicality Metadata" provider-name="Wilson Magic">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Metadata for the Magicality Addon</summary>
-		<description>Metadata for Magicality are maintained separately to make distribution of the the addon itself easier/faster.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
 
 <addon id="script.module.beautifulsoup"
        name="BeautifulSoup"
@@ -358,18 +137,6 @@ This is a Non-profit resource, organized solely for educational purposes which i
 		<description>Scrape common video host for URL's to be playable in XBMC/Kodi, simplifying addon development of video plugins requiring multi video hosts.</description>
         <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.[CR]The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.[CR]This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.</disclaimer>
         <license>Beerware rev. 42</license>
-	</extension>
-</addon>
-
-<addon id="script.module.magicality" name="Magicality Module" version="4.0.5" provider-name="Wilson Magic">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.beautifulsoup4"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<platform>all</platform>
-		<summary lang="en">Magicality</summary>
 	</extension>
 </addon>
 
@@ -472,35 +239,6 @@ This is a Non-profit resource, organized solely for educational purposes which i
             <license>GPL v3</license>
             <source>https://</source>
         </extension>
-</addon>
-
-<addon id="script.neptune.artwork" version="1.1.2" name="Neptune Rising Artwork" provider-name="Mr. Blamo">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Themes for the Neptune Rising Addon</summary>
-		<description>Themes for Neptune Rising are maintained separately to make distribution of the the addon itself easier/faster.</description>
-        <disclaimer lang="en">The author is not responsible for the use of this addon. The author is not responsible for the content found using this addon. The author does not host or own any content found within this addon.
-The author is in no way affiliated with Kodi, Team Kodi, or the XBMC Foundation.
-This is a Non-profit resource, organized solely for educational purposes which is protected under the Fair-Use doctrine of the Copyright Act, Specifically section 107, which does promote freedom of expression, by permitting the unlicensed use of copyright-protected works.
-</disclaimer>
-		<platform>all</platform>
-		<license>Beerware rev. 42</license>
-	</extension>
-</addon>
-
-<addon id="script.neptune.metadata" version="1.0.5" name="Neptune Rising Metadata" provider-name="Mr.Blamo">
-	<requires>
-		<import addon="xbmc.python" version="2.19.0"/>
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.addon.metadata">
-		<summary>Metadata for the Neptune Rising Addon</summary>
-		<description>Metadata for Neptune Rising are maintained separately to make distribution of the the addon itself easier/faster.</description>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="script.placenta.artwork" version="1.0.8" name="Placenta Artwork" provider-name="Team Afterbirth">
