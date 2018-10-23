@@ -1,65 +1,38 @@
-'''
-    Covenant Add-on
+# -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @Daddy_Blamo wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+# Addon Name: Placenta
+# Addon id: plugin.video.placenta
+# Addon Provider: Mr.Blamo
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+import re,urllib,urlparse,json,ast,xbmc,httplib
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-'''
-import re
-import urllib
-import urlparse
-import json
-import ast
-import xbmc
-import httplib
-
-from resources.lib.modules import client, cleantitle, directstream, jsunpack, source_utils
-
+from resources.lib.modules import client
+from resources.lib.modules import cleantitle
+from resources.lib.modules import directstream
+from resources.lib.modules import jsunpack
+from resources.lib.modules import source_utils
 
 class source:
     def __init__(self):
-        '''
-        Constructor defines instances variables
-
-        '''
         self.priority = 1
         self.language = ['en']
-        self.domains = ['fmovies.se', 'fmovies.to', 'bmovies.to', 'bmovies.life']
-        self.base_link = 'https://bmovies.life'
-        self.search_path = '/search?keyword=%s'
+        self.domains = ['fmovies.ac', 'fmovies.to', 'bmovies.is']
+        self.base_link = 'https://www3.fmovies.ac/'
+        self.search_path = '/search/%s'
         self.film_path = '/film/%s'
         self.js_path = '/assets/min/public/all.js?5a0da8a9'
         self.info_path = '/ajax/episode/info?ts=%s&_=%s&id=%s&server=%s&update=0'
         self.grabber_path = '/grabber-api/?ts=%s&id=%s&token=%s&mobile=0'
 
     def movie(self, imdb, title, localtitle, aliases, year):
-        '''
-        Takes movie information and returns a set name value pairs, encoded as
-        url params. These params include ts
-        (a unqiue identifier, used to grab sources) and list of source ids
-
-        Keyword arguments:
-
-        imdb -- string - imdb movie id
-        title -- string - name of the movie
-        localtitle -- string - regional title of the movie
-        year -- string - year the movie was released
-
-        Returns:
-
-        url -- string - url encoded params
-
-        '''
         try:
             clean_title = cleantitle.geturl(title)
             query = (self.search_path % clean_title)
@@ -131,23 +104,6 @@ class source:
             return
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
-        '''
-        Takes TV show information, encodes it as name value pairs, and returns
-        a string of url params
-
-        Keyword arguments:
-
-        imdb -- string - imdb tv show id
-        tvdb -- string - tvdb tv show id
-        tvshowtitle -- string - name of the tv show
-        localtvshowtitle -- string - regional title of the tv show
-        year -- string - year the tv show was released
-
-        Returns:
-
-        url -- string - url encoded params
-
-        '''
         try:
             data = {
                 'imdb': imdb,
@@ -163,25 +119,6 @@ class source:
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        '''
-        Takes episode information, finds the ts and list sources, encodes it as
-        name value pairs, and returns a string of url params
-
-        Keyword arguments:
-
-        url -- string - url params
-        imdb -- string - imdb tv show id
-        tvdb -- string - tvdb tv show id
-        title -- string - episode title
-        premiered -- string - date the episode aired (format: year-month-day)
-        season -- string - the episodes season
-        episode -- string - the episode number
-
-        Returns:
-
-        url -- string - url encoded params
-
-        '''
         try:
             data = urlparse.parse_qs(url)
             data = dict((i, data[i][0]) for i in data)
@@ -256,20 +193,6 @@ class source:
             return
 
     def sources(self, url, hostDict, hostprDict):
-        '''
-        Loops over site sources and returns a dictionary with corresponding
-        file locker sources and information
-
-        Keyword arguments:
-
-        url -- string - url params
-
-        Returns:
-
-        sources -- string - a dictionary of source information
-
-        '''
-
         sources = []
 
         try:
@@ -324,7 +247,6 @@ class source:
                                 pass
 
                     elif info_dict['type'] == 'iframe':
-                        # embed = self.__decode_shift(info_dict['target'], -18)
                         embed = info_dict['target']
 
                         valid, hoster = source_utils.is_host_valid(embed, hostDict)
@@ -338,7 +260,7 @@ class source:
 
                         sources.append({
                             'source': hoster,
-                            'quality': '720p', # need a better way of identifying quality
+                            'quality': '720p', 
                             'language': 'en',
                             'url': embed,
                             'direct': False,
@@ -354,18 +276,6 @@ class source:
             return sources
 
     def resolve(self, url):
-        '''
-        Takes a scraped url and returns a properly formatted url
-
-        Keyword arguments:
-
-        url -- string - source scraped url
-
-        Returns:
-
-        url -- string - a properly formatted url
-
-        '''
         try:
             return url
 
@@ -373,22 +283,6 @@ class source:
             return
 
     def __token(self, dic):
-        '''
-        Takes a dictionary containing id, update, server, and ts, then returns
-        a token which is used by info_path to retrieve grabber api
-        information
-
-        Thanks to coder-alpha for the updated bitshifting obfuscation
-        https://github.com/coder-alpha
-
-        Keyword arguments:
-
-        d -- dictionary - containing id, update, ts, server
-
-        Returns:
-
-        token -- integer - a unique integer
-        '''
         def bitshifthex(t, e):
             i = 0
             n = 0
@@ -432,21 +326,6 @@ class source:
             return
 
     def __decode_shift(self, t, i):
-        '''
-        Takes a bitshifted String and removes bitshifting obfuscation
-
-        Thanks to coder-alpha for the bitshifting algorithm
-        https://github.com/coder-alpha
-
-        Keyword arguments:
-
-        t -- string - the obfuscated string
-        i -- int -  the bitshift offset
-
-        Returns:
-
-        url -- string - the unobfuscated string
-        '''
         try:
             n = []
             e = []

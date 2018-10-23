@@ -38,7 +38,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="script.module.incursion" name="Incursion Module" version="1.21" provider-name="Incursion">
+<addon id="script.module.incursion" name="Incursion Module" version="1.22" provider-name="Incursion">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.beautifulsoup4"/>
