@@ -67,7 +67,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
         </extension>
     </addon>
 
-<addon id="plugin.video.incursion" version="0.1.17" name="Incursion" provider-name="Incursion">
+<addon id="plugin.video.incursion" version="0.1.18" name="Incursion" provider-name="Incursion">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.incursion" />
@@ -98,12 +98,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
     			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
 		<news>
-v0.1.17 (APR-2018)
-Even more Scraper Fixes
-CFSCRAPE Fix
-Moderator Disabled
-Fixed Trakt On Deck Magical Dissapearing Act
-Fixed search issue caused by character accents
+v0.1.18 (OCT-2018)
 		</news>
 	</extension>
 </addon>
