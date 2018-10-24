@@ -32,8 +32,8 @@ class source:
     def __init__(self):
         self.priority = 0
         self.language = ['en']
-        self.domains = ['tv-release.pw', 'tv-release.immunicity.st']
-        self.base_link = 'http://tv-release.pw'
+        self.domains = ['hdencode.com']
+        self.base_link = 'http://hdencode.com'
         self.search_link = '?s=%s'
         self.scraper = cfscrape.create_scraper()
         self.threads = []

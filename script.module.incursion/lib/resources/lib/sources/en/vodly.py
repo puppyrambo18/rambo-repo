@@ -29,8 +29,8 @@ class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['vodly.us', 'vodly.unblocked.pro']
-        self.base_link = 'http://vodly.us'
+        self.domains = ['vodly.us', 'watch32.is']
+        self.base_link = 'http://watch32.is/'
         self.search_link = '/search?s=%s'
 
 

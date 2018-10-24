@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.incursion" version="1.0.2" name="Incursion" provider-name="Incursion">
+<addon id="plugin.video.incursion" version="1.0.3" name="Incursion" provider-name="Incursion">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.incursion" />
@@ -31,7 +31,8 @@
 		</assets>
 		<news>
 v1.0.2 (OCT-2018)
-Added Numerical Hosters
+Added Multiple New Hosters
+Altered Default Setting Values
 		</news>
 	</extension>
 </addon>
