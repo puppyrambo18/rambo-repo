@@ -38,7 +38,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
 	</extension>
 </addon>
 
-<addon id="script.module.incursion" name="Incursion Module" version="1.22" provider-name="Incursion">
+<addon id="script.module.incursion" name="Incursion Module" version="1.23" provider-name="Incursion">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.beautifulsoup4"/>
@@ -67,7 +67,7 @@ This is a Non-profit resource, organized solely for educational purposes which i
         </extension>
     </addon>
 
-<addon id="plugin.video.incursion" version="1.0.3" name="Incursion" provider-name="Incursion">
+<addon id="plugin.video.incursion" version="1.0.4" name="Incursion" provider-name="Incursion">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.module.incursion" />
@@ -98,8 +98,8 @@ This is a Non-profit resource, organized solely for educational purposes which i
     			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
 		</assets>
 		<news>
-v1.0.2 (OCT-2018)
-Added Multiple New Hosters
+v1.0.4 (OCT-2018)
+Fixed Hosters
 Altered Default Setting Values
 		</news>
 	</extension>
