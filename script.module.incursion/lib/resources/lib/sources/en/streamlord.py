@@ -1,31 +1,18 @@
-# -*- coding: utf-8 -*-
-
+# -*- coding: UTF-8 -*-
 '''
-    Covenant Add-on
+    streamlord scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    Updated and refactored by someone.
+    Originally created by others.
 '''
+import re,traceback,urllib,urlparse
 
-
-import re,urllib,urlparse
-
-from resources.lib.modules import control
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import jsunpack
-from resources.lib.modules import dom_parser
-
+from providerModules.LambdaScrapers import control
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import jsunpack
+from providerModules.LambdaScrapers import log_utils
 
 class source:
     def __init__(self):
@@ -37,15 +24,15 @@ class source:
         self.user = control.setting('streamlord.user')
         self.password = control.setting('streamlord.pass')
 
-
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
             return url
         except:
+            failure = traceback.format_exc()
+            log_utils.log('StreamLord - Exception: \n' + str(failure))
             return
-
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
@@ -53,8 +40,9 @@ class source:
             url = urllib.urlencode(url)
             return url
         except:
+            failure = traceback.format_exc()
+            log_utils.log('StreamLord - Exception: \n' + str(failure))
             return
-
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
@@ -66,8 +54,9 @@ class source:
             url = urllib.urlencode(url)
             return url
         except:
+            failure = traceback.format_exc()
+            log_utils.log('StreamLord - Exception: \n' + str(failure))
             return
-
 
     def sources(self, url, hostDict, hostprDict):
         try:
@@ -75,22 +64,21 @@ class source:
 
             if url == None: return sources
 
-            # if (self.user != '' and self.password != ''): #raise Exception()
+            if (self.user != '' and self.password != ''): #raise Exception()
 
-                # login = urlparse.urljoin(self.base_link, '/login.html')
+                login = urlparse.urljoin(self.base_link, '/login.html')
 
-                # post = urllib.urlencode({'username': self.user, 'password': self.password, 'submit': 'Login'})
+                post = urllib.urlencode({'username': self.user, 'password': self.password, 'submit': 'Login'})
 
-                # cookie = client.request(login, post=post, output='cookie', close=False)
+                cookie = client.request(login, post=post, output='cookie', close=False)
 
-                # r = client.request(login, post=post, cookie=cookie, output='extended')
+                r = client.request(login, post=post, cookie=cookie, output='extended')
 
-                # headers = {'User-Agent': r[3]['User-Agent'], 'Cookie': r[4]}
-            # else:
-                # headers = {}
+                headers = {'User-Agent': r[3]['User-Agent'], 'Cookie': r[4]}
+            else:
+                headers = {}
 
 
-            headers = {'User-Agent': client.randomagent()}
             if not str(url).startswith('http'):
 
                 data = urlparse.parse_qs(url)
@@ -99,69 +87,23 @@ class source:
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
                 year = data['year']
-                def searchname(r):
-                    r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
-                    r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
-                    r = [] if r == [] else [i[0] for i in r][0]
-                    return r
-                
+
+                query = urlparse.urljoin(self.base_link, self.search_link)
+
+                post = urllib.urlencode({'searchapi2': title})
+
+                r = client.request(query, post=post, headers=headers)
+
                 if 'tvshowtitle' in data:
-                    link = urlparse.urljoin(self.base_link, 'tvshow-%s.html' %title[0].upper())
-                    r = client.request(link, headers=headers)
-                    pages = dom_parser.parse_dom(r, 'span', attrs={'class': 'break-pagination-2'})
-                    pages = dom_parser.parse_dom(pages, 'a', req='href')
-                    pages = [(i.attrs['href']) for i in pages]
-                    if pages == []:
-                        r = re.findall('(watch-tvshow-.+?-\d+\.html)', r)
-                        r = [(i, re.findall('watch-tvshow-(.+?)-\d+\.html', i)) for i in r]
-                        r = searchname(r)
-                    else:
-                        for page in pages:
-                            link = urlparse.urljoin(self.base_link, page)
-                            r = client.request(link, headers=headers)
-                            r = re.findall('(watch-tvshow-.+?-\d+\.html)', r)
-                            r = [(i, re.findall('watch-tvshow-(.+?)-\d+\.html', i)) for i in r]
-                            r = searchname(r)
-                            if r != []: break
+                    r = re.findall('(watch-tvshow-.+?-\d+\.html)', r)
+                    r = [(i, re.findall('watch-tvshow-(.+?)-\d+\.html', i)) for i in r]
                 else:
-                    link = urlparse.urljoin(self.base_link, 'movies-%s.html' %title[0].upper())
-                    r = client.request(link, headers=headers)
-                    pages = dom_parser.parse_dom(r, 'span', attrs={'class': 'break-pagination-2'})
-                    pages = dom_parser.parse_dom(pages, 'a', req='href')
-                    pages = [(i.attrs['href']) for i in pages]
-                    if pages == []:
-                        r = re.findall('(watch-movie-.+?-\d+\.html)', r)
-                        r = [(i, re.findall('watch-movie-(.+?)-\d+\.html', i)) for i in r]
-                        r = searchname(r)
-                    else:
-                        for page in pages:
-                            log_utils.log('shit Returned: %s' % str('in loop'), log_utils.LOGNOTICE)
-                            link = urlparse.urljoin(self.base_link, page)
-                            r = client.request(link, headers=headers)
-                            r = re.findall('(watch-movie-.+?-\d+\.html)', r)
-                            r = [(i, re.findall('watch-movie-(.+?)-\d+\.html', i)) for i in r]
-                            r = searchname(r)
-                            if r != []: break
-                        
-                    
+                    r = re.findall('(watch-movie-.+?-\d+\.html)', r)
+                    r = [(i, re.findall('watch-movie-(.+?)-\d+\.html', i)) for i in r]
 
-                # leaving old search in for if streamlord renables searching on the site
-                # query = urlparse.urljoin(self.base_link, self.search_link)
-
-                # post = urllib.urlencode({'searchapi2': title})
-
-                # r = client.request(query, post=post, headers=headers)
-
-                # if 'tvshowtitle' in data:
-                    # r = re.findall('(watch-tvshow-.+?-\d+\.html)', r)
-                    # r = [(i, re.findall('watch-tvshow-(.+?)-\d+\.html', i)) for i in r]
-                # else:
-                    # r = re.findall('(watch-movie-.+?-\d+\.html)', r)
-                    # r = [(i, re.findall('watch-movie-(.+?)-\d+\.html', i)) for i in r]
-
-                # r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
-                # r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
-                # r = [i[0] for i in r][0]
+                r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
+                r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
+                r = [i[0] for i in r][0]
 
                 u = urlparse.urljoin(self.base_link, r)
                 for i in range(3):
@@ -209,10 +151,9 @@ class source:
 
             return sources
         except:
+            failure = traceback.format_exc()
+            log_utils.log('StreamLord - Exception: \n' + str(failure))
             return sources
-
 
     def resolve(self, url):
         return url
-
-

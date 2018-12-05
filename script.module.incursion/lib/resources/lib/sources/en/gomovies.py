@@ -14,11 +14,11 @@
 
 import re, urlparse, urllib, base64
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import cache
-from resources.lib.modules import dom_parser2
-from resources.lib.modules import debrid
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import cache
+from providerModules.LambdaScrapers import dom_parser2
+from providerModules.LambdaScrapers import debrid
 
 class source:
     def __init__(self):
@@ -27,8 +27,6 @@ class source:
         self.domains = ['gomovies.gs']
         self.base_link = 'http://gomovies.gs'
         self.search_link = '/search-movies/%s.html'
-
-
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
             clean_title = cleantitle.geturl(title)

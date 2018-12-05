@@ -1,28 +1,16 @@
-# -*- coding: utf-8 -*-
-
+# -*- coding: UTF-8 -*-
 '''
-    Covenant Add-on
+    ororo scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    Updated and refactored by someone.
+    Originally created by others.
 '''
-
-
 import re,urlparse,json,base64
 
-from resources.lib.modules import cache
-from resources.lib.modules import control
-from resources.lib.modules import client
+from providerModules.LambdaScrapers import cache
+from providerModules.LambdaScrapers import control
+from providerModules.LambdaScrapers import client
 
 
 class source:
@@ -41,7 +29,7 @@ class source:
         self.password = control.setting('ororo.pass')
         self.headers = {
         'Authorization': 'Basic %s' % base64.b64encode('%s:%s' % (self.user, self.password)),
-        'User-Agent': 'Incursion for Kodi'
+        'User-Agent': 'Placenta for Kodi'
         }
 
 

@@ -8,17 +8,16 @@
  # ----------------------------------------------------------------------------
 #######################################################################
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
+# Scraper Checked and Fixed 11-08-2018 -JewBMX
 
 import re,urllib,urlparse
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import debrid
-from resources.lib.modules import log_utils
-from resources.lib.modules import source_utils
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import debrid
+from providerModules.LambdaScrapers import log_utils
+from providerModules.LambdaScrapers import source_utils
+from providerModules.LambdaScrapers import cfscrape
 
 # Working: https://www.best-moviez.ws/deadpool-2-2018-1080p-web-dl-dd5-1-h264-cmrg/
 # Working: https://www.best-moviez.ws/deadpool-2-2018
@@ -33,8 +32,6 @@ class source:
 		self.domains = ['best-moviez.ws']
 		self.base_link = 'http://www.best-moviez.ws'
 		self.search_link = '/%s'
-
-
 	def movie(self, imdb, title, localtitle, aliases, year):
 		try:
 			url = {'imdb': imdb, 'title': title, 'year': year}
@@ -66,10 +63,9 @@ class source:
 	def sources(self, url, hostDict, hostprDict):
 		try:
 			sources = []
+			scraper = cfscrape.create_scraper()
 
 			if url == None: return sources
-
-			if debrid.status() == False: raise Exception()
 
 			data = urlparse.parse_qs(url)
 			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -84,7 +80,7 @@ class source:
 			url = self.search_link % urllib.quote_plus(query)
 			url = urlparse.urljoin(self.base_link, url)
 			#log_utils.log('\n\n\n\n\n\nquery, url: %s, %s' % (query,url))
-			r = client.request(url)
+			r = scraper.get(url).content
 
 			
 			# grab the (only?) relevant div and cut off the footer
@@ -188,8 +184,6 @@ class source:
 	def resolve(self, url):
 		return url
 
-
-
 '''
 EXAMPLE: text urls after "Single Link" (note no "S")
 <div class="entry-content">
@@ -207,8 +201,6 @@ EXAMPLE: text urls after "Single Link" (note no "S")
 <p>http://nitroflare.com/view/4424F59C04B5172/Deadpool.2.2018.720p.BluRay.x264.DTS-HDC.mkv</p>
 <p><span style="font-weight:bold"><span style="color:#0080FF">NitroFlare</span></span></p>
 <p>http://nitroflare.com/view/F8885D081E8036B/Deadpool.2.2018.720p.BluRay.x264.DTS-HDC.part1.rar<br />
-
-
 EXAMPLE: <a> links after "Single Links" (note now there is an "S")
 <div class="entry-content">
 ...
@@ -219,8 +211,6 @@ EXAMPLE: <a> links after "Single Links" (note now there is an "S")
 <p><b><span style="color: #ff0000">NitroFlare</b></span><br />
 <a href="https://nitroflare.com/view/9EACE029F149096/Avengers.Infinity.War.2018.2160p.UHD.BluRay.x265-SWTYBLZ.part01.rar">Avengers.Infinity.War.2018.2160p.UHD.BluRay.x265-SWTYBLZ.part01.rar</a><br />
 <a href="https://nitroflare.com/view/5F167E50AFBCDD7/Avengers.Infinity.War.2018.2160p.UHD.BluRay.x265-SWTYBLZ.part02.rar">Avengers.Infinity.War.2018.2160p.UHD.BluRay.x265-SWTYBLZ.part02.rar</a><br />
-
-
 EXAMPLE: <a> link but to a .iso file
 <div class="entry-content">
 ...
@@ -231,8 +221,6 @@ EXAMPLE: <a> link but to a .iso file
 <p><b><span style="color: #ff0000">NitroFlare</b></span><br />
 <a href="https://nitroflare.com/view/435E34B243AEEC1/Avengers.Age.Of.Ultron.UHDBD-TERMiNAL.part01.rar">Avengers.Age.Of.Ultron.UHDBD-TERMiNAL.part01.rar</a><br />
 <a href="https://nitroflare.com/view/D11B2E1CEEB4D00/Avengers.Age.Of.Ultron.UHDBD-TERMiNAL.part02.rar">Avengers.Age.Of.Ultron.UHDBD-TERMiNAL.part02.rar</a><br />
-
-
 EXAMPLE: Plain text inside sometimes-shared) <p> tags
 <div class="entry-content">
 ...
@@ -243,8 +231,6 @@ EXAMPLE: Plain text inside sometimes-shared) <p> tags
 <span style="font-weight:bold"><span style="color:#0080FF">NitroFlare</span></span></p>
 <p>http://nitroflare.com/view/EAF5BF83036A8DE/The.Death.of.Superman.2018.1080p.BluRay.DTS.x264-TayTO.part1.rar<br />
 http://nitroflare.com/view/290A3D1480AD822/The.Death.of.Superman.2018.1080p.BluRay.DTS.x264-TayTO.part2.rar<br />
-
-
 
 EXAMPLE: tv episode text links in <pre>, by type/quality
 <div class="entry-content">

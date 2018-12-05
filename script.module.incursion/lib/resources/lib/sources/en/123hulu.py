@@ -1,23 +1,18 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+'''
+    123hulu scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import re
 import urllib
 import urlparse
 import json
 import base64
 
-from resources.lib.modules import client, cleantitle, directstream, dom_parser2
+from providerModules.LambdaScrapers import client, cleantitle, directstream, dom_parser2
 
 class source:
     def __init__(self):

@@ -1,31 +1,26 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+'''
+    cartoonhd scraper for Exodus forks.
+    Nov 9 2018 - Checked
+    Oct 10 2018 - Cleaned and Checked
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
-
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import re,traceback,urllib,urlparse,json,base64,time,xbmc
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import cache
-from resources.lib.modules import directstream
-from resources.lib.modules import source_utils
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import cache
+from providerModules.LambdaScrapers import directstream
+from providerModules.LambdaScrapers import source_utils
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['putlocker.systems', 'cartoonhd.website', 'cartoonhd.press', 'cartoonhd.care']
-        self.base_link = 'https://cartoonhd.care/'
+        self.domains = ['cartoonhd.care']
+        self.base_link = 'https://cartoonhd.care'
 
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
@@ -65,7 +60,7 @@ class source:
     def searchShow(self, title, season, episode, aliases, headers):
         try:
             for alias in aliases:
-                url = '%s/tv-series/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(season), int(episode))
+                url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(season), int(episode))
                 url = client.request(url, headers=headers,output='geturl', timeout='10')
                 if not url == None and url != self.base_link: break
             return url
@@ -77,12 +72,12 @@ class source:
     def searchMovie(self, title, year, aliases, headers):
         try:
             for alias in aliases:
-                url = '%s/film/%s' % (self.base_link, cleantitle.geturl(alias['title']))
+                url = '%s/full-movie/%s' % (self.base_link, cleantitle.geturl(alias['title']))
                 url = client.request(url, headers=headers, output='geturl', timeout='10')
                 if not url == None and url != self.base_link: break
             if url == None:
                 for alias in aliases:
-                    url = '%s/film/%s-%s' % (self.base_link, cleantitle.geturl(alias['title']), year)
+                    url = '%s/full-movie/%s-%s' % (self.base_link, cleantitle.geturl(alias['title']), year)
                     url = client.request(url, headers=headers, output='geturl', timeout='10')
                     if not url == None and url != self.base_link: break
 

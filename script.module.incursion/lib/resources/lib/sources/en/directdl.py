@@ -1,31 +1,23 @@
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @Daddy_Blamo wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
-'''
-    Covenant Add-on
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
-
+# Addon Name: Placenta
+# Addon id: plugin.video.placenta
+# Addon Provider: Mr.Blamo
 
 import re,urllib,urlparse,json,random,base64
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import cache
-from resources.lib.modules import debrid
-
-
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import cache
+from providerModules.LambdaScrapers import debrid
 class source:
     def __init__(self):
         self.priority = 1
@@ -39,8 +31,6 @@ class source:
         self.r_link = 'aHR0cDovL2lwdjYuaWNlZmlsbXMuaW5mby9pcC5waHA/dj0lcyY='
         self.j_link = 'aHR0cDovL2lwdjYuaWNlZmlsbXMuaW5mby9tZW1iZXJzb25seS9jb21wb25lbnRzL2NvbV9pY2VwbGF5ZXIvdmlkZW8ucGhwQWpheFJlc3AucGhwP3M9JXMmdD0lcw=='
         self.p_link = 'aWQ9JXMmcz0lcyZpcXM9JnVybD0mbT0lcyZjYXA9KyZzZWM9JXMmdD0lcw=='
-
-
     def movie(self, imdb, title, localtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'title': title, 'year': year}
@@ -48,8 +38,6 @@ class source:
             return url
         except:
             return
-
-
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
@@ -57,8 +45,6 @@ class source:
             return url
         except:
             return
-
-
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             if url == None: return
@@ -70,8 +56,6 @@ class source:
             return url
         except:
             return
-
-
     def request(self, url, post=None, cookie=None, referer=None, output='', close=True):
         try:
             headers = {'Accept': '*/*'}
@@ -84,8 +68,6 @@ class source:
             return(result)
         except:
             return
-
-
     def directdl_cache(self, url):
         try:
             url = urlparse.urljoin(base64.b64decode(self.b_link), url)
@@ -98,14 +80,11 @@ class source:
         except:
             return
 
-
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
-
-            if debrid.status() == False: raise Exception()
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -140,15 +119,13 @@ class source:
                     if not any(x == y for x in f): raise Exception()
 
                     quality = i['quality']
-                    
-                    
-                    
+
                     quality = quality.upper()
 
                     size = i['size']
                     size = float(size)/1024
                     size = '%.2f GB' % size
-   
+
                     if any(x in quality for x in ['HEVC', 'X265', 'H265']): info = '%s | HEVC' % size
                     else: info = size
 
@@ -158,7 +135,7 @@ class source:
 
                     url = i['links']
                     #for x in url.keys(): links.append({'url': url[x], 'quality': quality, 'info': info})
-                    
+
                     links = []
                     
                     for x in url.keys(): links.append({'url': url[x], 'quality': quality})
@@ -182,13 +159,9 @@ class source:
                     
                 except:
                     pass
-
-
             return sources
         except:
             return sources
-
-
     def resolve(self, url):
         try:
             b = urlparse.urlparse(url).netloc
@@ -210,5 +183,3 @@ class source:
             return url
         except:
             return
-
-

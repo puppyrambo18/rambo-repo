@@ -1,35 +1,28 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+'''
+    xmovies scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
-
-
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import re,urlparse,json, traceback, urllib, time
 
 from bs4 import BeautifulSoup
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import cfscrape
-from resources.lib.modules import dom_parser
-from resources.lib.modules import debrid
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import cfscrape
+from providerModules.LambdaScrapers import dom_parser
+from providerModules.LambdaScrapers import debrid
 
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
-        self.domains = ['xmovies8.tv', 'xmovies8.ru', 'xmovies8.es', 'xmovies8.cloud']
-        self.base_link = 'http://www3.xmovies8.cloud'
+        self.domains = ['xmovies8.tv', 'xmovies8.ru', 'xmovies8.es']
+        self.base_link = 'https://xmovies8.nz'
         self.search_link = '/movies/search?s=%s'
         self.scraper = cfscrape.create_scraper()
 

@@ -1,30 +1,18 @@
-# -*- coding: utf-8 -*-
-
+# -*- coding: UTF-8 -*-
 '''
-    Covenant Add-on
+    moviesplanet scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    Updated and refactored by someone.
+    Originally created by others.
 '''
-
-
 import re,urllib,urlparse,json,base64,time
 
-from resources.lib.modules import control
-from resources.lib.modules import pyaes
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import directstream
+from providerModules.LambdaScrapers import control
+from providerModules.LambdaScrapers import pyaes
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import directstream
 
 
 class source:

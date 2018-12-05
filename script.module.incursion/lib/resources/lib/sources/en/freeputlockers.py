@@ -1,23 +1,17 @@
 # -*- coding: UTF-8 -*-
-#######################################################################
- # ----------------------------------------------------------------------------
- # "THE BEER-WARE LICENSE" (Revision 42):
- # @Daddy_Blamo wrote this file.  As long as you retain this notice you
- # can do whatever you want with this stuff. If we meet some day, and you think
- # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
- # ----------------------------------------------------------------------------
-#######################################################################
+'''
+    freeputlockers scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
-# Addon Name: Placenta
-# Addon id: plugin.video.placenta
-# Addon Provider: Mr.Blamo
-
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import re,urllib,urlparse,json,base64,time
 
-from resources.lib.modules import cleantitle
-from resources.lib.modules import dom_parser2
-from resources.lib.modules import client
-from resources.lib.modules import debrid
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import dom_parser2
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import debrid
 
 class source:
     def __init__(self):
@@ -25,7 +19,7 @@ class source:
         self.language = ['en']
         self.domains = ['freeputlockers.org']
         self.base_link = 'http://freeputlockers.org'
-        self.search_link = '/watch/%s-%s.html' 
+        self.search_link = '/watch/%s-%s-online-putlockers.html' 
         
     def movie(self, imdb, title, localtitle, aliases, year):
         try:

@@ -1,40 +1,33 @@
-# -*- coding: utf-8 -*-
+# -*- coding: UTF-8 -*-
+#######################################################################
+ # ----------------------------------------------------------------------------
+ # "THE BEER-WARE LICENSE" (Revision 42):
+ # @Daddy_Blamo wrote this file.  As long as you retain this notice you
+ # can do whatever you want with this stuff. If we meet some day, and you think
+ # this stuff is worth it, you can buy me a beer in return. - Muad'Dib
+ # ----------------------------------------------------------------------------
+#######################################################################
 
-'''
-    Covenant Add-on
+# Addon Name: Placenta
+# Addon id: plugin.video.placenta
+# Addon Provider: Mr.Blamo
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+import re,traceback,urllib,urlparse
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
-
-
-import re,urllib,urlparse
-
-from resources.lib.modules import cleantitle
-from resources.lib.modules import client
-from resources.lib.modules import source_utils
-from resources.lib.modules import debrid
-from resources.lib.modules import dom_parser2
-
+from providerModules.LambdaScrapers import cleantitle
+from providerModules.LambdaScrapers import client
+from providerModules.LambdaScrapers import source_utils
+from providerModules.LambdaScrapers import debrid
+from providerModules.LambdaScrapers import dom_parser2
+from providerModules.LambdaScrapers import log_utils
 
 class source:
     def __init__(self):
         self.priority = 1
         self.language = ['en']
         self.domains = ['seriescr.com']
-        self.base_link = 'http://seriescr.com'
+        self.base_link = 'http://seriescr.com/'
         self.search_link = '/search/%s/feed/rss2/'
-
 
     def tvshow(self, imdb, tvdb, tvshowtitle, localtvshowtitle, aliases, year):
         try:
@@ -42,6 +35,8 @@ class source:
             url = urllib.urlencode(url)
             return url
         except:
+            failure = traceback.format_exc()
+            log_utils.log('SeriesCR - Exception: \n' + str(failure))
             return
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
@@ -54,6 +49,8 @@ class source:
             url = urllib.urlencode(url)
             return url
         except:
+            failure = traceback.format_exc()
+            log_utils.log('SeriesCR - Exception: \n' + str(failure))
             return
 
     def sources(self, url, hostDict, hostprDict):
@@ -62,7 +59,7 @@ class source:
 
             if url is None: return sources
 
-            if debrid.status() is False: raise Exception()
+            
 
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -91,16 +88,12 @@ class source:
                     info = ' | '.join(info)
 
                     valid, host = source_utils.is_host_valid(url, hostDict)
-                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info,
-                                    'direct': False, 'debridonly': True})
-
-
+                    sources.append({'source': host, 'quality': quality, 'language': 'en', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
             return sources
         except:
+            failure = traceback.format_exc()
+            log_utils.log('SeriesCR - Exception: \n' + str(failure))
             return sources
-
 
     def resolve(self, url):
         return url
-
-

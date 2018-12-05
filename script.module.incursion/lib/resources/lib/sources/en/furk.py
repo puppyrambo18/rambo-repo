@@ -1,20 +1,13 @@
+# -*- coding: UTF-8 -*-
 '''
-   Incursion Add-on
-   Copyright (C) 2016 Incursion
-   This program is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation, either version 3 of the License, or
-   (at your option) any later version.
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-   You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
+    furk scraper for Exodus forks.
+    Nov 9 2018 - Checked
 
+    Updated and refactored by someone.
+    Originally created by others.
+'''
 import requests, json, sys
-from resources.lib.modules import source_utils, cleantitle, control
+from providerModules.LambdaScrapers import source_utils, cleantitle, control
 
 
 class source:
@@ -27,11 +20,10 @@ class source:
                                 "&match=%s&moderated=%s%s&sort=relevance&type=video&offset=0&limit=%s"
         self.tfile_link = "/api/file/get?api_key=%s&t_files=1&id=%s"
         self.login_link = "/api/login/login?login=%s&pwd=%s"
-        self.user_name = control.setting('furk.user')
-        self.user_pass = control.setting('furk.pass')
+        self.user_name = control.setting('furk.user_name')
+        self.user_pass = control.setting('furk.user_pass')
         self.api_key = control.setting('furk.api')
         self.search_limit = control.setting('furk.limit')
-        self.mod_level = control.setting('furk.mod.level').lower()
 
     def get_api(self):
 
@@ -96,28 +88,28 @@ class source:
         try:
 
             content_type = 'episode' if 'tvshowtitle' in url else 'movie'
-            match = 'all'
-            moderated = 'no' if content_type == 'episode' else self.mod_level
+            match = 'extended'
+            moderated = 'no' if content_type == 'episode' else 'yes'
             search_in = ''
 
             if content_type == 'movie':
                 title = url['title'].replace(':', ' ').replace(' ', '+').replace('&', 'and')
                 title = title.replace("'", "")
                 year = url['year']
-                link = '{0}+{1}'.format(title, year)
+                link = '@name+%s+%s+@files+%s+%s' \
+                        % (title, year, title, year)
 
             elif content_type == 'episode':
                 title = url['tvshowtitle'].replace(':', ' ').replace(' ', '+').replace('&', 'and')
                 season = int(url['season'])
                 episode = int(url['episode'])
-                season00 = 's%02d' % (season)
                 season00_ep00_SE = 's%02de%02d' % (season, episode)
                 season0_ep0_SE = 's%de%d' % (season, episode)
                 season00_ep00_X = '%02dx%02d' % (season, episode)
                 season0_ep0_X = '%dx%d' % (season, episode)
                 season0_ep00_X = '%dx%02d' % (season, episode)
-                link = '%s+%s' \
-                       % (title, season00_ep00_SE)
+                link = '@name+%s+@files+%s+|+%s+|+%s+|+%s+|+%s' \
+                        % (title, season00_ep00_SE, season0_ep0_SE, season00_ep00_X, season0_ep0_X, season0_ep00_X)
 
             s = requests.Session()
             link = (
